@@ -3,24 +3,34 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.2" />
     <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="EFSecondLevelCache.Core" Version="2.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.6" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+    <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="2.6.7" />
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="2.0.7" />
+    <PackageReference Include="Z.ExtensionMethods" Version="2.1.1" />
   </ItemGroup>
 
 
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Infrastructure\Repositories\" />
     <Folder Include="Infrastructure\Services\" />
     <Folder Include="Models\Dtos\" />
     <Folder Include="Utils\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sheep.Common.Library\Sheep.Common.Library.csproj" />
   </ItemGroup>
 
 </Project>

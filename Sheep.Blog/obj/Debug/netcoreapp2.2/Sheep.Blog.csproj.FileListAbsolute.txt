@@ -27,3 +27,5 @@ D:\MyBlog\Sheep.Blog\Sheep.Blog\obj\Debug\netcoreapp2.2\Sheep.Blog.Views.pdb
 D:\MyBlog\Sheep.Blog\Sheep.Blog\obj\Debug\netcoreapp2.2\Sheep.Blog.dll
 D:\MyBlog\Sheep.Blog\Sheep.Blog\obj\Debug\netcoreapp2.2\Sheep.Blog.pdb
 D:\MyBlog\Sheep.Blog\Sheep.Blog\obj\Debug\netcoreapp2.2\Sheep.Blog.csproj.CopyComplete
+D:\MyBlog\Sheep.Blog\Sheep.Blog\obj\Debug\netcoreapp2.2\Sheep.Blog.csprojAssemblyReference.cache
+D:\MyBlog\Sheep.Blog\Sheep.Blog\bin\Debug\netcoreapp2.2\Sheep.Common.Library.dll

@@ -1,1 +1,18 @@
 # sheep.blog
+部署数据库
+docker run --name blog-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+客户端链接mysql报错：Authentication plugin 'caching_sha2_password' cannot be loaded 
+按照 博客 https://blog.csdn.net/GRAY_KEY/article/details/80659916 去处理
+
+	1.docker container exec -i -t blog-mysql  /bin/bash
+
+	2.mysql -u root -p
+
+	3.alter user 'root'@'%' identified with mysql_native_password by '123456';
+
+	4.FLUSH PRIVILEGES;
+
+
+部署Redis
+docker run --name blog-redis -p 6379:6379 -d redis

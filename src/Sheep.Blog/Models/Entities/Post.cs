@@ -1,0 +1,149 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Sheep.Blog.Definitions;
+using Sheep.Blog.Models.Validation;
+
+namespace Sheep.Blog.Models.Entities
+{
+    /// <summary>
+    /// 文章
+    /// </summary>
+    [Table("Post")]
+    public class Post : BaseEntity
+    {
+        public Post()
+        {
+            Comment = new HashSet<Comment>();
+            PostDate = DateTime.Now;
+            ModifyDate = DateTime.Now;
+            IsFixedTop = false;
+            DataStatus = DataStatus.Pending;
+            IsWordDocument = false;
+            Seminar = new HashSet<SeminarPost>();
+        }
+
+        /// <summary>
+        /// 标题
+        /// </summary>
+        [Required(ErrorMessage = "文章标题不能为空！")]//, LuceneIndex]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// 作者
+        /// </summary>
+        [Required, MaxLength(24, ErrorMessage = "作者名最长支持24个字符！")]//, LuceneIndex]
+        public string Author { get; set; }
+
+        /// <summary>
+        /// 内容
+        /// </summary>
+        [Required(ErrorMessage = "文章内容不能为空！"), SubmitCheck(20, 1000000, false)]//, LuceneIndex(IsHtml = true)]
+        public string Content { get; set; }
+
+        /// <summary>
+        /// 受保护的内容
+        /// </summary>
+        public string ProtectContent { get; set; }
+
+        /// <summary>
+        /// 发表时间
+        /// </summary>
+        public DateTime PostDate { get; set; }
+
+        /// <summary>
+        /// 修改时间
+        /// </summary>
+        public DateTime ModifyDate { get; set; }
+
+        /// <summary>
+        /// 是否置顶
+        /// </summary>
+        [DefaultValue(false)]
+        public bool IsFixedTop { get; set; }
+
+        /// <summary>
+        /// 分类id
+        /// </summary>
+        public int CategoryId { get; set; }
+
+        /// <summary>
+        /// 资源名
+        /// </summary>
+        public string ResourceName { get; set; }
+
+        /// <summary>
+        /// 是否是Word文档
+        /// </summary>
+        [DefaultValue(false)]
+        public bool IsWordDocument { get; set; }
+
+        /// <summary>
+        /// 作者邮箱
+        /// </summary>
+        [Required(ErrorMessage = "作者邮箱不能为空！"), EmailAddress]//, LuceneIndex]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// 标签
+        /// </summary>
+        [StringLength(256, ErrorMessage = "标签最大允许255个字符")]//, LuceneIndex]
+        public string Label { get; set; }
+
+        /// <summary>
+        /// 文章关键词
+        /// </summary>
+        [StringLength(256, ErrorMessage = "文章关键词最大允许255个字符")]//, LuceneIndex]
+        public string Keyword { get; set; }
+
+        /// <summary>
+        /// 支持数
+        /// </summary>
+        [DefaultValue(0)]
+        public int VoteUpCount { get; set; }
+
+        /// <summary>
+        /// 反对数
+        /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed), DefaultValue(0)]
+        public int VoteDownCount { get; set; }
+
+        /// <summary>
+        /// 每日平均访问量
+        /// </summary>
+        public double AverageViewCount { get; set; }
+
+        /// <summary>
+        /// 总访问量
+        /// </summary>
+        public int TotalViewCount { get; set; }
+
+        /// <summary>
+        /// 提交人IP地址
+        /// </summary>
+        public string IP { get; set; }
+
+
+        /// <summary>
+        /// 分类
+        /// </summary>
+        public virtual Category Category { get; set; }
+
+        /// <summary>
+        /// 评论
+        /// </summary>
+        public virtual ICollection<Comment> Comment { get; set; }
+
+        /// <summary>
+        /// 专题
+        /// </summary>
+        public virtual ICollection<SeminarPost> Seminar { get; set; }
+
+        /// <summary>
+        /// 文章历史版本
+        /// </summary>
+        public virtual ICollection<PostHistoryVersion> PostHistoryVersion { get; set; }
+    }
+}
